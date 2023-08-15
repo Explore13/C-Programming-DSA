@@ -1,0 +1,2 @@
+Length= 5 and Width= 6
+Perimeter= 22
