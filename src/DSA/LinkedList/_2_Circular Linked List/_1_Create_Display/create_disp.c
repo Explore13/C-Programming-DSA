@@ -1,4 +1,4 @@
-// Welcome to EXPLORER's IDE
+ // Welcome to EXPLORER's IDE
 
 #include<stdio.h>
 #include<math.h>
@@ -20,7 +20,7 @@ void createLL()
     }
     else
     {
-        last->next=newNode;
+        last->next=newNode; 
         last=newNode;
     }
     newNode->next=first;

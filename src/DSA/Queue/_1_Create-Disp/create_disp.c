@@ -4,62 +4,66 @@
 #include<math.h>
 #include<string.h>
 #include<stdlib.h>
-int arr[100],first=0,last=-1;
-int length=sizeof(arr)/sizeof(arr[0]);
-void EnQueue()
-{
-    if(++last!=length)
-    {
-        printf("\nQueue Data :");
-        scanf("%d",&arr[last]);
+
+int queue[100], size, first = -1, last = -1;
+
+void insert() {
+
+    if (last == size - 1) {
+        printf("\nQueue is Full");
+    }
+    else if (first == -1) {
+        ++first,++last;
+        printf("\nEnter Value : ");
+        scanf("%d", &queue[last]);
     }
     else
     {
-        printf("\nStack OverFlow");
-        last--;
+        ++last;
+        printf("\nEnter Value : ");
+        scanf("%d",&queue[last]);
     }
 }
-void DeQueue()
-{
-    if(last==-1)
-    {
-        return;
-    }
-    printf("\n%d is Popped up",arr[first]);
-    for(int i=first;i<last;i++)
-    {
-       arr[i]= arr[i+1];
-    }
-    last--;
 
-}
-void display()
-{
-    if(last==-1)
+void delete() {
+    if(first==-1||first>last)
     {
-        printf("\nQueue UnderFlow");
+        printf("\nQueue is Empty");
+        first=last=-1;
+    }
+    else
+    {
+        printf("\n%d is Deleted",queue[first]);
+        ++first;
+    }
+}
+
+void display() {
+    if(first==-1||first>last) {
+        printf("\nQueue is Empty");
         return;
     }
+
     printf("\nThe Queue : \n");
-    for (int i=0;i<=last;i++)
+    for(int i=first;i<=last;i++)
     {
-        printf(" %d",arr[i]);
+        printf("%d ",queue[i]);
     }
 }
+
 int main() {
-    while(1)
-    {
-        int n;
-        printf("\n\nChoose : \n\t1. EnQueue : \n\t2. DeQueue : \n\t3. Display : \n\t");
-        scanf("%d",&n);
-        switch (n) {
+    printf("\nEnter the size of Queue : ");
+    scanf("%d", &size);
+    while (1) {
+        int choice;
+        printf("\nChoice : \n\t1.Insert : \n\t2. Delete : \n\t3. Display : \n\t");
+        scanf("%d", &choice);
+        switch (choice) {
             case 1:
-                EnQueue();
-                display();
+                insert();
                 break;
             case 2:
-                DeQueue();
-                display();
+                delete();
                 break;
             case 3:
                 display();
@@ -69,4 +73,5 @@ int main() {
                 exit(0);
         }
     }
+    return 0;
 }

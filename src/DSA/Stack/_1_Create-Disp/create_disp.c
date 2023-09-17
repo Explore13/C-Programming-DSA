@@ -8,12 +8,12 @@ int arr[100],top=-1,length=sizeof(arr)/sizeof(arr[0]);
 
 void push()
 {
-if(++top==length)
+if(top==length-1)
 {
     printf("\nStack OverFlow");
-    top--;
     return;
 }
+    ++top;
     printf("\nEnter Data :");
     scanf("%d",&arr[top]);
 }

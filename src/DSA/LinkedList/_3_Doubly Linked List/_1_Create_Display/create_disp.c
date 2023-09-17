@@ -131,8 +131,8 @@ void deleteFromFirst()
         first=last=NULL;
         return;
     }
-    first->next->prev=NULL;
     first=first->next;
+    first->prev=NULL;
     free(p);
 }
 
@@ -150,13 +150,15 @@ void deleteFromLast()
         first=last=NULL;
         return;
     }
-    while(p->next->next!=NULL)
+    struct node *q=NULL;
+    while(p->next!=NULL)
     {
+        q=p;
         p=p->next;
     }
-    p->next=NULL;
-    free(last);
-    last=p;
+    q->next=NULL;
+    free(p);
+    last=q;
 }
 
 void deleteFromPos()
@@ -223,12 +225,33 @@ void display()
     }
 }
 
+void reverse()
+{
+    struct node *p=first,*q=NULL,*r=NULL;
+    if(first==NULL)
+    {
+        return;
+    }
+    while(p!=NULL)
+    {
+        r=q;
+        q=p;
+        p=p->next;
+        q->next=r;
+        q->prev=p;
+    }
+    last=first;
+    first=q;
+}
+
 int main() {
 
     while(1)
     {
         int choice;
-        printf("\n\n\tChoice : \n\t1. Create LL : \n\t2. Display : \n\t3. Insert @Beginning : \n\t4. Insert @Last : \n\t5. Insert @Position : \n\t6. Length of LL : \n\t7. Delete from First : \n\t8. Delete from Last : \n\t9. Delete from Position : \n\t");
+        printf("\n\n\tChoice : \n\t1. Create LL : \n\t2. Display : \n\t3. Insert @Beginning : \n\t"
+               "4. Insert @Last : \n\t5. Insert @Position : \n\t6. Length of LL : \n\t"
+               "7. Delete from First : \n\t8. Delete from Last : \n\t9. Delete from Position : \n\t10. Reverse LL : \n\t");
         scanf("%d",&choice);
         switch (choice) {
             case 1:
@@ -254,6 +277,7 @@ int main() {
                 insertAtPos();
                 printf("\nLength of LL : %d\n\n",length());
                 display();
+
                 break;
             case 6:
                 printf("\nLength of LL : %d\n\n",length());
@@ -272,6 +296,12 @@ int main() {
             case 9:
                 deleteFromPos();
                 printf("\nLength of LL : %d\n\n",length());
+                display();
+                break;
+            case 10:
+                display();
+                printf("\n");
+                reverse();
                 display();
                 break;
             default:
