@@ -9,9 +9,11 @@ struct node {
     int data;
     struct node *next;
 } *first = NULL, *last = NULL;
+
 void insertAtLast() {
     struct node *newNode;
     newNode = (struct node *) malloc(sizeof(struct node));
+//    (*newNode).next = NULL; or newNode->next=NULL; both are same
     newNode->next = NULL;
     printf("Enter a value : \n");
     scanf("%d", &newNode->data);
@@ -25,48 +27,46 @@ void insertAtLast() {
 
 }
 
-void insertAtPos(){
-    struct node *temp=first,*newNode=(struct node*)malloc(sizeof(struct node*));
-    newNode->next=NULL;
+void insertAtPos() {
+    struct node *temp = first, *newNode = (struct node *) malloc(sizeof(struct node *));
+    newNode->next = NULL;
     printf("Enter value : \n");
-    scanf("%d",&(newNode->data));
-    int length=0;
-    while(temp!=NULL){
+    scanf("%d", &(newNode->data));
+    int length = 0;
+    while (temp != NULL) {
         length++;
-        temp=temp->next;
+        temp = temp->next;
     }
-    if(length==0)
-    {
-        first=last=newNode;
-        return ;
+    if (length == 0) {
+        first = last = newNode;
+        return;
     }
     int pos;
     printf("Enter the position : \n");
-    scanf("%d",&pos);
+    scanf("%d", &pos);
 
-    temp=first;
-    if(pos==0){
-        newNode->next=first;
-        first=newNode;
+    temp = first;
+    if (pos == 0) {
+        newNode->next = first;
+        first = newNode;
 
-    }
-    else if(pos<=length-1){
-        int i=0;
-        while(i<pos-1){
-            temp=temp->next;
+    } else if (pos <= length - 1) {
+        int i = 0;
+        while (i < pos - 1) {
+            temp = temp->next;
             i++;
         }
-        newNode->next=temp->next;
-        temp->next=newNode;
-    }
-    else if(pos>length-1){
-    last->next=newNode;
-    last=newNode;
+        newNode->next = temp->next;
+        temp->next = newNode;
+    } else if (pos > length - 1) {
+        last->next = newNode;
+        last = newNode;
     }
 
 }
-void insertAtBeginning(){
-    struct node *newNode=(struct node*) malloc(sizeof(struct node*));
+
+void insertAtBeginning() {
+    struct node *newNode = (struct node *) malloc(sizeof(struct node *));
     newNode->next = NULL;
     printf("Enter a value : \n");
     scanf("%d", &newNode->data);
@@ -75,15 +75,15 @@ void insertAtBeginning(){
         last = first;
         return;
     }
-    newNode->next=first;
-    first=newNode;
+    newNode->next = first;
+    first = newNode;
 }
 
-void display(){
-    struct node *temp=first;
+void display() {
+    struct node *temp = first;
     printf("\n");
     printf("\n");
-    while(temp!=NULL) {
+    while (temp != NULL) {
         printf("| %d | -> ", temp->data);
         temp = temp->next;
     }
@@ -95,11 +95,11 @@ void display(){
 
 int main() {
 
-    while(1){
+    while (1) {
         int n;
         printf("1. Insert at Last\n2. Insert at Beginning\n3. Insert at Middle\n0. Exit\n");
-        scanf("%d",&n);
-        switch(n){
+        scanf("%d", &n);
+        switch (n) {
             case 1:
                 insertAtLast();
                 display();
