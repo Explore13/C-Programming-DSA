@@ -11,19 +11,15 @@ void insert() {
 
     if (last == size - 1) {
         printf("\nQueue is Full");
+        return;
     }
-    else if (first == -1) {
-        ++first,++last;
-        printf("\nEnter Value : ");
-        scanf("%d", &queue[last]);
-    }
-    else
-    {
+    if(last==-1)
+        ++first;
         ++last;
         printf("\nEnter Value : ");
-        scanf("%d",&queue[last]);
+        scanf("%d", &queue[last]);
+
     }
-}
 
 void delete() {
     if(first==-1||first>last)
