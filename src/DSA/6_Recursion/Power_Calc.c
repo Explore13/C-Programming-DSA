@@ -16,7 +16,6 @@ int main() {
 }
 
 int powerCalc(int num, int pow) {
-    static int val = 1;
     if (pow == 0)
         return 1;
     return powerCalc(num, --pow) * num;
