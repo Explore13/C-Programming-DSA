@@ -5,6 +5,13 @@
 #include<string.h>
 #include<stdlib.h>
 #include "Header.h"
+struct node {
+    struct node *lchild;
+    int data;
+    struct node *rchild;
+} *root = NULL;
+
+
 void createTree() {
     struct node *p, *child;
     int value;
@@ -47,6 +54,7 @@ void createTree() {
 
 }
 
+/* PreOrder Traversal */
 void preOrder(struct node *p) {
     if (p != NULL) {
         printf("%d ", p->data);
@@ -56,6 +64,27 @@ void preOrder(struct node *p) {
 
 }
 
+/* InOrder Traversal */
+void InOrder(struct node *p) {
+    if (p != NULL) {
+        InOrder(p->lchild);
+        printf("%d ", p->data);
+        InOrder(p->rchild);
+    }
+
+}
+
+/* PostOrder Traversal */
+void PostOrder(struct node *p) {
+    if (p != NULL) {
+        PostOrder(p->lchild);
+        PostOrder(p->rchild);
+        printf("%d ", p->data);
+    }
+
+}
+
+/* Free the Allocated Memory */
 void freeTree(struct node *p)
 {
     if(p)
@@ -70,6 +99,11 @@ int main() {
     createTree();
     printf("\nPreOrder Traversal : \n");
     preOrder(root);
+    printf("\nInOrder Traversal : \n");
+    InOrder(root);
+    printf("\nPostOrder Traversal : \n");
+    PostOrder(root);
+
     freeTree(root);
     return 0;
 }
