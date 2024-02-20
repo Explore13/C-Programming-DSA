@@ -175,8 +175,7 @@ void freeLL()
 
 int main() {
 
-    int n = 1;
-    while (n) {
+    while (1) {
         int check;
         printf("\nSelect the option : \n\n\t1. Insert @ first \n\t2. Insert @ last\n\t3. Insert @ pos\n\t4. Display"
                "\n\t5. Delete from first\n\t6. Delete from Last\n\t7. Delete from pos\n\n");

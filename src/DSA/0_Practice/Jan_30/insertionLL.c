@@ -1,6 +1,4 @@
 #include<stdio.h>
-#include<math.h>
-#include<string.h>
 #include<stdlib.h>
 
 
@@ -47,7 +45,7 @@ void display() {
         printf("\n LinkedList : ");
         struct node *p = first;
         while (p != NULL) {
-            printf("%d || %u -> ", p->data, p);
+            printf("%d -> ", p->data, p);
             p = p->next;
         }
     }
